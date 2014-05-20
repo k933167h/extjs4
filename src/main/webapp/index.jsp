@@ -5,7 +5,12 @@
         <script>
             Ext.onReady(function() {
                 Ext.create("Ext.Component", {
-                    html: "Raw Component",
+                    //html: "Raw Component",
+                    autoEl: {
+                        html: "Link",
+                        href: "#",
+                        tag: "a"
+                    },
                     renderTo: Ext.getBody()
                 });
             });
