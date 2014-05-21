@@ -7,6 +7,27 @@
         <script src="http://cdn.sencha.com/ext/gpl/4.2.1/ext-all.js"></script>
         <script>
             Ext.onReady(function() {
+                
+                /*
+                 var nameText = Ext.create("Ext.form.field.Text", {
+                 fieldLabel: "Name"
+                 });
+                 
+                 var submitButton = Ext.create("Ext.Button", {
+                 text: "Submit"
+                 });
+                 */
+
+                var nameText = {
+                    xtype: "textfield",
+                    fieldLabel: "Name"
+                };
+
+                var submitButton = {
+                    xtype: "button",
+                    text: "Submit"
+                };
+                
                 var pnl = Ext.create("Ext.panel.Panel", {
                     items: [
                         Ext.create("Ext.Component", {
@@ -51,11 +72,34 @@
                                 },
                                 hide: function() {
                                     console.log("hide");
+                                },
+                                enable: function() {
+                                    console.log("enable");
                                 }
                             }
-                        })
-                    ]
+                        }),
+                        nameText,
+                        submitButton
+                    ],
+                    renderTo: Ext.getBody()
                 });
+
+                console.log("****** Calling disable");
+                pnl.getComponent("rawcomp1").disable();
+
+                console.log("****** Calling enable");
+                pnl.getComponent("rawcomp1").enable();
+
+                console.log("****** Calling hide");
+                pnl.getComponent("rawcomp1").hide();
+
+                console.log("****** Calling show");
+                pnl.getComponent("rawcomp1").show();
+
+                /*
+                 console.log("****** Calling destroy");
+                 pnl.getComponent("rawcomp1").destroy();        
+                 */
             });
         </script>
     </head>
