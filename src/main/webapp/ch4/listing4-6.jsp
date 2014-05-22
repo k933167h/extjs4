@@ -54,7 +54,14 @@
                         },
                         {
                             xtype: "textarea",
-                            fieldLabel: "Address"
+                            fieldLabel: "Address",
+                            validator: function(val) {
+                                if (val.indexOf("#") !== -1 || val.indexOf(".") !== -1) {
+                                    return "Invalid characters like # or . in address";
+                                }
+
+                                return true;
+                            }
                         },
                         {
                             xtype: "button",
