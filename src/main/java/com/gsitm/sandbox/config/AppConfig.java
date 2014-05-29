@@ -28,6 +28,7 @@ public class AppConfig implements TransactionManagementConfigurer {
     @Bean
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
+                .addScript("script.sql")
                 .setType(EmbeddedDatabaseType.HSQL)
                 .build();
     }
@@ -38,7 +39,7 @@ public class AppConfig implements TransactionManagementConfigurer {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan(new String[]{"com.gsitm.sandbox.model"});
