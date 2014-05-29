@@ -1,5 +1,7 @@
 package com.gsitm.sandbox.config;
 
+import java.util.Map;
+import java.util.Properties;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,19 +24,19 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 public class AppConfig implements TransactionManagementConfigurer {
 
     public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return txManager();
+        return transactionManager();
     }
 
     @Bean
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .addScript("script.sql")
-                .setType(EmbeddedDatabaseType.HSQL)
+                .setType(EmbeddedDatabaseType.H2)
                 .build();
     }
 
     @Bean
-    public PlatformTransactionManager txManager() {
+    public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
 
@@ -47,7 +49,12 @@ public class AppConfig implements TransactionManagementConfigurer {
         vendorAdapter.setDatabase(Database.HSQL);
         vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setShowSql(true);
+        Map<String, Object> properties = vendorAdapter.getJpaPropertyMap();
+        properties.put("jadira.usertype.autoRegisterUserTypes", "true");
+        properties.put("jadira.usertype.databaseZone", "jvm");
+        properties.put("jadira.usertype.javaZone", "jvm");
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+        entityManagerFactoryBean.setJpaPropertyMap(properties);
         return entityManagerFactoryBean;
     }
 }

@@ -1,10 +1,11 @@
 package com.gsitm.sandbox.initializer;
 
 import com.gsitm.sandbox.config.AppConfig;
-import com.gsitm.sandbox.config.ServletConfig;
+import com.gsitm.sandbox.config.WebConfig;
+import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class ServletInitializer extends
+public class WebInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
@@ -14,7 +15,7 @@ public class ServletInitializer extends
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{ServletConfig.class};
+        return new Class[]{WebConfig.class, RepositoryRestMvcConfiguration.class};
     }
 
     @Override

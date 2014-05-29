@@ -1,3 +1,4 @@
+drop table ProjectActionItem if exists;
 create table ProjectActionItem (
 	sno INT,
 	item VARCHAR(50),
