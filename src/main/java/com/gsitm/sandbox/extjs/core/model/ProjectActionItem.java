@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Data;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 @Entity
 @Data
@@ -23,6 +23,6 @@ public class ProjectActionItem implements Serializable {
     @Column(length = 50)    
     private String status;
     @Column(length = 50)    
-    private String createdby;
-    private DateTime createdDate;
+    private String createdBy;
+    private LocalDate createdDate;
 }

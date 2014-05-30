@@ -1,7 +1,6 @@
 package com.gsitm.sandbox.extjs.web;
 
 import com.gsitm.sandbox.extjs.core.AppConfig;
-import com.gsitm.sandbox.extjs.web.WebConfig;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

@@ -4,13 +4,34 @@ Ext.define("MyApp.view.home.ProjectActionItemGrid", {
     title: "Action items",
     store: null,
     columns: [
-        {header: "No", dataIndex: "sno", width: 30},
-        {header: "Action Item", dataIndex: "item", width: 200},
-        {header: "Action Officer", dataIndex: "officer"},
-        {header: "Status", dataIndex: "status", width: 150}
+        {
+            header: "No",
+            dataIndex: "sno",
+            width: 30
+        },
+        {
+            header: "Action Item",
+            dataIndex: "item",
+            width: 200},
+        {
+            header: "Action Officer",
+            dataIndex: "officer"
+        },
+        {
+            header: "Status",
+            dataIndex: "status",
+            width: 150
+        }
     ],
-    bbar: {
-        xtype: "pagingtoolbar",
-        store: Ext.getStore("projectActionItemStore")
+    initComponent: function() {
+        this.dockedItems = [
+            {
+                xtype: 'pagingtoolbar',
+                store: Ext.getStore("ProjectActionItemStore"),
+                dock: 'bottom',
+                displayInfo: true
+            }
+        ];
+        this.callParent(arguments);
     }
 });

@@ -2,12 +2,24 @@ Ext.define("MyApp.controller.HomeController", {
     extend: "Ext.app.Controller",
     id: "HomeController",
     refs: [
-        {ref: "actionItemsGrid", selector: "home grid"},
-        {ref: "actionItemDetailsPanel", selector: "home form"}
+        {
+            ref: "actionItemsGrid",
+            selector: "home grid"
+        },
+        {
+            ref: "actionItemDetailsPanel",
+            selector: "home form"}
     ],
-    models: ["ProjectActionItem"],
-    stores: ["ProjectActionItemStore"],
-    views: ["home.ProjectActionItemDetailsPanel", "home.ProjectActionItemGrid", "home.HomeScreen"],
+    models: [
+        "ProjectActionItem"
+    ],
+    stores: [
+        "ProjectActionItemStore"
+    ],
+    views: [
+        "home.ProjectActionItemDetailsPanel",
+        "home.ProjectActionItemGrid", "home.HomeScreen"
+    ],
     init: function() {
         this.control({
             "home": {
