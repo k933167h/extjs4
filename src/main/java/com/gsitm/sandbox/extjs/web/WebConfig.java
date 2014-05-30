@@ -1,4 +1,4 @@
-package com.gsitm.sandbox.config;
+package com.gsitm.sandbox.extjs.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-@ComponentScan(basePackages = "com.gsitm.sandbox")
+@ComponentScan
 @EnableWebMvc
 @EnableSpringDataWebSupport
 public class WebConfig extends WebMvcConfigurerAdapter {

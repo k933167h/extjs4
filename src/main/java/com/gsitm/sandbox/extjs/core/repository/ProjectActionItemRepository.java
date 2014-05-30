@@ -1,10 +1,10 @@
-package com.gsitm.sandbox.repository;
+package com.gsitm.sandbox.extjs.core.repository;
 
-import com.gsitm.sandbox.model.ProjectActionItem;
+import com.gsitm.sandbox.extjs.core.model.ProjectActionItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "projectactionitem", path = "projectactionitem")
+@RepositoryRestResource(path = "projectactionitems")
 public interface ProjectActionItemRepository extends JpaRepository<ProjectActionItem, Long> {
 
 }

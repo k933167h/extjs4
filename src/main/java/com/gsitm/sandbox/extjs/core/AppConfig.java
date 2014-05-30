@@ -1,7 +1,6 @@
-package com.gsitm.sandbox.config;
+package com.gsitm.sandbox.extjs.core;
 
 import java.util.Map;
-import java.util.Properties;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,8 +17,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 @Configuration
-@ComponentScan(basePackages = "com.gsitm.sandbox")
-@EnableJpaRepositories(basePackages = "com.gsitm.sandbox")
+@ComponentScan
+@EnableJpaRepositories
 @EnableTransactionManagement
 public class AppConfig implements TransactionManagementConfigurer {
 
@@ -44,17 +43,17 @@ public class AppConfig implements TransactionManagementConfigurer {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan(new String[]{"com.gsitm.sandbox.model"});
+        entityManagerFactoryBean.setPackagesToScan(this.getClass().getPackage().getName());
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.HSQL);
         vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setShowSql(true);
-        Map<String, Object> properties = vendorAdapter.getJpaPropertyMap();
-        properties.put("jadira.usertype.autoRegisterUserTypes", "true");
-        properties.put("jadira.usertype.databaseZone", "jvm");
-        properties.put("jadira.usertype.javaZone", "jvm");
+        Map<String, Object> propertyMap = vendorAdapter.getJpaPropertyMap();
+        propertyMap.put("jadira.usertype.autoRegisterUserTypes", "true");
+        propertyMap.put("jadira.usertype.databaseZone", "jvm");
+        propertyMap.put("jadira.usertype.javaZone", "jvm");
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-        entityManagerFactoryBean.setJpaPropertyMap(properties);
+        entityManagerFactoryBean.setJpaPropertyMap(propertyMap);
         return entityManagerFactoryBean;
     }
 }

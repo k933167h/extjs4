@@ -1,4 +1,4 @@
-package com.gsitm.sandbox.model;
+package com.gsitm.sandbox.extjs.core.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;

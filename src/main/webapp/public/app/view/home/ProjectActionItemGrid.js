@@ -8,5 +8,9 @@ Ext.define("MyApp.view.home.ProjectActionItemGrid", {
         {header: "Action Item", dataIndex: "item", width: 200},
         {header: "Action Officer", dataIndex: "officer"},
         {header: "Status", dataIndex: "status", width: 150}
-    ]
+    ],
+    bbar: {
+        xtype: "pagingtoolbar",
+        store: Ext.getStore("projectActionItemStore")
+    }
 });
