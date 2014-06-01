@@ -1,22 +1,21 @@
 package com.gsitm.sandbox.extjs.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.List;
-import org.springframework.context.annotation.Bean;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
 @ComponentScan
 @EnableWebMvc
 @EnableSpringDataWebSupport
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends RepositoryRestMvcConfiguration {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -24,20 +23,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(jackson2HttpMessageConverter());
-        super.configureMessageConverters(converters);
+    protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        config.setLimitParamName("limit");
+        super.configureRepositoryRestConfiguration(config);
     }
 
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new HibernateAwareObjectMapper();
-    }
-
-    @Bean
-    public MappingJackson2HttpMessageConverter jackson2HttpMessageConverter() {
-        MappingJackson2HttpMessageConverter mjhmc = new MappingJackson2HttpMessageConverter();
-        mjhmc.setObjectMapper(objectMapper());
-        return mjhmc;
+    @Override
+    protected void configureJacksonObjectMapper(ObjectMapper objectMapper) {
+        objectMapper.registerModules(new Hibernate4Module(), new JodaModule());
+        super.configureJacksonObjectMapper(objectMapper);
     }
 }

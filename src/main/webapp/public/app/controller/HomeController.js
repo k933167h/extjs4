@@ -1,15 +1,14 @@
 Ext.define("MyApp.controller.HomeController", {
     extend: "Ext.app.Controller",
     id: "HomeController",
-    refs: [
-        {
+    refs: [{
             ref: "actionItemsGrid",
             selector: "home grid"
         },
         {
             ref: "actionItemDetailsPanel",
-            selector: "home form"}
-    ],
+            selector: "home form"
+        }],
     models: [
         "ProjectActionItem"
     ],
@@ -18,7 +17,8 @@ Ext.define("MyApp.controller.HomeController", {
     ],
     views: [
         "home.ProjectActionItemDetailsPanel",
-        "home.ProjectActionItemGrid", "home.HomeScreen"
+        "home.ProjectActionItemGrid", 
+        "home.HomeScreen"
     ],
     init: function() {
         this.control({

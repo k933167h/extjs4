@@ -1,7 +1,6 @@
 package com.gsitm.sandbox.extjs.web;
 
 import com.gsitm.sandbox.extjs.core.AppConfig;
-import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebInitializer extends
@@ -14,7 +13,7 @@ public class WebInitializer extends
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class, RepositoryRestMvcConfiguration.class};
+        return new Class[]{WebConfig.class};
     }
 
     @Override
