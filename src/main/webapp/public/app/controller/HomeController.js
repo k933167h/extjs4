@@ -1,31 +1,30 @@
-Ext.define("MyApp.controller.HomeController", {
-    extend: "Ext.app.Controller",
-    id: "HomeController",
+Ext.define('MyApp.controller.HomeController', {
+    extend: 'Ext.app.Controller',
+    id: 'HomeController',
     refs: [{
-            ref: "actionItemsGrid",
-            selector: "home grid"
-        },
-        {
-            ref: "actionItemDetailsPanel",
-            selector: "home form"
+            ref: 'actionItemsGrid',
+            selector: 'home grid'
+        }, {
+            ref: 'actionItemDetailsPanel',
+            selector: 'home form'
         }],
     models: [
-        "ProjectActionItem"
+        'ProjectActionItem'
     ],
     stores: [
-        "ProjectActionItemStore"
+        'ProjectActionItemStore'
     ],
     views: [
-        "home.ProjectActionItemDetailsPanel",
-        "home.ProjectActionItemGrid", 
-        "home.HomeScreen"
+        'home.ProjectActionItemDetailsPanel',
+        'home.ProjectActionItemGrid',
+        'home.HomeScreen'
     ],
     init: function() {
         this.control({
-            "home": {
+            'home': {
                 beforerender: this.loadProjectActionItems
             },
-            "home grid": {
+            'home grid': {
                 itemclick: this.displayProjectActionItemDetails
             }
         });
@@ -34,7 +33,7 @@ Ext.define("MyApp.controller.HomeController", {
         this.getActionItemDetailsPanel().loadRecord(record);
     },
     loadProjectActionItems: function() {
-        var store = Ext.getStore("ProjectActionItemStore");
+        var store = Ext.getStore('ProjectActionItemStore');
         store.load();
         this.getActionItemsGrid().reconfigure(store);
     }
