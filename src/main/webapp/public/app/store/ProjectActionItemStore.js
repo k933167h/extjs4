@@ -2,6 +2,7 @@ Ext.define("MyApp.store.ProjectActionItemStore", {
     extend: "Ext.data.Store",
     model: "MyApp.model.ProjectActionItem",
     remoteSort: true,
+    remoteFilter: true,
     proxy: {
         type: "rest",
         url: "projectactionitems",
